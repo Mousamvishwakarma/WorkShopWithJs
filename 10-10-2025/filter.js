@@ -43,4 +43,6 @@ console.log(key,':',obj[key]);
 obj.skills.push('python')
 obj.age = 20;
 
+const 
+
 
