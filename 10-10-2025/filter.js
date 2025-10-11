@@ -44,7 +44,7 @@ obj.skills.push('python')
 obj.age = 20;
 
 const  obje= {
-Name: "mousam";
+Name: "mousam"
 }
 
 
