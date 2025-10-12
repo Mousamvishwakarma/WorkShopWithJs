@@ -4,44 +4,48 @@ let todo = []
 let progress = []
 let done = []
 
-const renderTodo = () => {
-  const todolist = document.getElementById('todo')
-  todolist.innerHTML = `<h3>Todo</h3>`
-  for (let val in todo) {
-    const div = createElement('div')
-    div.className = 'task'
-    div.innerHTML`<p> ${todo[val]}</p> 
-        <button onclick='moveToProgress(${el})'> > </button>
-  `
-    todolist.appendChild(div)
-  }
-}
-const renderProgress = () => {
-  const Progresslist = document.getElementById('progress')
-  Progresslist.innerHTML = ` <h3>Progress</h3>`
-  for (let val in progress) {
-    const div = createElement('div')
-    div.className = 'task'
-    div.innerHTML = `<p> ${progress[val]}
-        <button onclick='moveToDone(${el})'> > </button>
-       `
-    Progresslist.appendChild(div)
-  }
-
-}
 const renderDone = () => {
   const doneList = document.getElementById('done')
   doneList.innerHTML = `<h3>Done</h3>`
   for (let val in done) {
-    const div = createElement(div)
+    const div = document.createElement('div')
     div.className = "task"
     div.innerHTML = `
-        <p> ${done[el]}</p>
+        <p> ${done[val]}</p>
         `
     doneList.appendChild(div)
 
   }
 }
+
+const renderProgress = () => {
+  const Progresslist = document.getElementById('progress')
+  Progresslist.innerHTML = ` <h3>Progress</h3>`
+  for (let val in progress) {
+    const div = document.createElement('div')
+    div.className = 'task'
+    div.innerHTML = `<p> ${progress[val]}
+        <button onclick='moveToDone(${val})'> > </button>
+       `
+    Progresslist.appendChild(div)
+  }
+
+}
+
+const renderTodo = () => {
+  const todolist = document.getElementById('todo')
+  todolist.innerHTML = `<h3>Todo</h3>`
+  for (let val in todo) {
+    const div =document.createElement('div')
+    div.className = 'task'
+    div.innerHTML =`<p> ${todo[val]}</p> 
+        <button onclick='moveToProgress(${val})'> > </button>
+  `
+    todolist.appendChild(div)
+  }
+}
+
+
 
 const addTask = () => {
   event.preventDefault()
@@ -67,7 +71,6 @@ const moveToProgress = (id) => {
 const moveToDone = (id) => {
   done.push(progress[id])
   progress.splice(id, 1)
-
   renderProgress()
   renderDone()
   localStorage.setItem('progress', JSON.stringify(progress))
