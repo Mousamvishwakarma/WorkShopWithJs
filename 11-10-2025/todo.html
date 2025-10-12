@@ -1,84 +1,158 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width= viewport, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo App</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #74ABE2, #5563DE);
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: white;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    form {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    input[type="text"] {
+      width: 400px;
+      height: 60px;
+      padding: 10px;
+      border-radius: 8px;
+      border: 3px solid #ccc;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input[type="text"]:focus {
+      border-color: #5563DE;
+      box-shadow: 0 0 5px rgba(85, 99, 222, 0.5);
+    }
+
+    input[type="submit"] {
+      padding: 10px 15px;
+      margin-left: 10px;
+      border: none;
+      background-color: #ffb703;
+      color: #333;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      border: 3px solid #ccc;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #fb8500;
+      color: white;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .column {
+      background-color: white;
+      width: 300px;
+      height: 500px;
+      border-radius: 12px;
+      border: 3px solid #ccc;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      padding: 15px;
+      overflow-y: auto;
+      transition: transform 0.3s;
+    }
+
+    .column:hover {
+      transform: translateY(-5px);
+    }
+
+    .column h3 {
+      font-size: 22px;
+      color: #5563DE;
+      text-shadow: none;
+      border-bottom: 2px solid #5563DE;
+      padding-bottom: 8px;
+      text-align: center;
+    }
+
+    .task {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 10px;
+      background-color: #f8f9fa;
+      transition: 0.3s;
+    }
+
+    .task:hover {
+      background-color: #e9ecef;
+      transform: scale(1.02);
+    }
+
+    button {
+      background-color: #5563DE;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      padding: 6px 10px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #3949ab;
+    }
+
+  </style>
 </head>
+
 <body>
+  <div>
+    <h1>Todo App</h1>
 
-    <!-- //create a todo list with html and css and javascript --> 
-     <!-- <style></style>  -->
+    <form onsubmit="addTask(event)">
+      <input type="text" id="taskInput" placeholder="Enter task">
+      <input type="submit" value="Add">
+    </form>
+    <hr>
 
-     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        #todo-container {
-            width: 300px;
-            margin: 50px auto;
-            padding: 20px;
-            background: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        #todo-input {
-            width: calc(100% - 22px);
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        #add-todo-btn {
-            width: 100%;
-            padding: 10px;
-            background: #28a745;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        #add-todo-btn:hover {
-            background: #218838;
-        }
-        #todo-list {
-            list-style-type: none;
-            padding: 0;
-        }
-        #todo-list li {
-            padding: 10px;
-            background: #f9f9f9;
-            border-bottom: 1px solid #eee;
-        }
-        #todo-list li:nth-child(odd) {
-            background: #efefef;
-        }
-    </style>
-    <div id="todo-container">
-        <h1>Todo List</h1>
-        <input type="text" id="todo-input" placeholder="Add a new task...">
-        <button id="add-todo-btn">Add</button>
-        <ul id="todo-list"></ul>
+    <div class="container">
+      <div class="column" id="todo">
+        <h3>Todo</h3>
+      </div>
+      <div class="column" id="Progress">
+        <h3>In Progress</h3>
+      </div>
+      <div class="column" id="done">
+        <h3>Done</h3>
+      </div>
     </div>
-    <script src="todo.js"></script>
-    <script>
-        const todoInput = document.getElementById('todo-input');
-        const addTodoBtn = document.getElementById('add-todo-btn');
-        const todoList = document.getElementById('todo-list');
+  </div>
 
-        addTodoBtn.addEventListener('click', () => {
-            const task = todoInput.value;
-            if (task) {
-                const li = document.createElement('li');
-                li.textContent = task;
-                todoList.appendChild(li);
-                todoInput.value = '';
-            }
-        });
-
-    </script>    mm
-
+ 
 </body>
 </html>
