@@ -1,49 +1,49 @@
-// //01 Destructure Nested Object
-// const user ={
-// Name: "alice",
-// detail:{
-//     age:25,
-//     city:"paris"
-// }
-// };
-// console.log(user.detail.city);
-// console.log(user.detail.age);
+//01 Destructure Nested Object
+const user ={
+Name: "alice",
+detail:{
+    age:25,
+    city:"paris"
+}
+};
+console.log(user.detail.city);
+console.log(user.detail.age);
 
-// //02 marge Object 
-// const obj1 = {
-//     a:1,
-//     b:2
-// }
-// const obj2 ={
-//     b:3,
-//     c:4
-// }
-// const marge = { ...obj1, ...obj2};
-// console.log(marge);
+//02 marge Object 
+const obj1 = {
+    a:1,
+    b:2
+}
+const obj2 ={
+    b:3,
+    c:4
+}
+const marge = { ...obj1, ...obj2};
+console.log(marge);
 
-// //03 convert object to arry
-// const product = {
-//     id:1,
-//     Name: "yogi",
-//     Phone: +918889691075
-// }
-// const result = Object.entries(product)
-// console.log(product);
+//03 convert object to arry
+const product = {
+    id:1,
+    Name: "yogi",
+    Phone: +918889691075
+}
+const results = Object.entries(product)
+console.log(product);
 
-// // console.log(product.Name);
+// console.log(product.Name);
 
-// //04 update Nested Vlaue Without Multion
-// const person={
-//     Name: "john",
-//     address:{
-//         city: "London",
-//         zip: 12345
-//     }
-// };
-// person.city = "Tokyo"
-// console.log(person);
+//04 update Nested Vlaue Without Multion
+const person={
+    Name: "john",
+    address:{
+        city: "London",
+        zip: 12345
+    }
+};
+person.city = "Tokyo"
+console.log(person);
 
-//05 filter Object
+// 05 filter Object
 
 // const score ={
 //     Alice:85,
@@ -55,21 +55,21 @@
 // if()
 // }
 
-// const scores = {
-//     Alice: 85,
-//     Bob: 58,
-//     Charlie: 90,
-//     Dave: 45
-// };
-// const result = {};
+const scores = {
+    Alice: 85,
+    Bob: 58,
+    Charlie: 90,
+    Dave: 45
+};
+const resultss = {};
 
-// for (let marks in scores) {
-//     if (scores[marks] >= 60) {
-//         result[marks] = scores[marks];
-//     }
-// }
+for (let marks in scores) {
+    if (scores[marks] >= 60) {
+        resultss[marks] = scores[marks];
+    }
+}
 
-// console.log(result);
+console.log(resultss);
 
 //<----------------JAVASCRIPT ARRAY QUESTIONS------------------------->
 
