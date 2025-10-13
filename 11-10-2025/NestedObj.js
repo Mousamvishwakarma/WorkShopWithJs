@@ -44,17 +44,6 @@ person.city = "Tokyo"
 console.log(person);
 
 // 05 filter Object
-
-// const score ={
-//     Alice:85,
-//     bob:58,
-//     Charile:90,
-//     Dave:45
-// };
-// const result ={
-// if()
-// }
-
 const scores = {
     Alice: 85,
     Bob: 58,
@@ -73,14 +62,20 @@ console.log(resultss);
 
 //<----------------JAVASCRIPT ARRAY QUESTIONS------------------------->
 
-//Remove Duplicates
-const arr = [1,2,2,3,4,4,5]
-const uniqueArr = [...new Set(arr)];
-console.log(uniqueArr);
+//1 Remove Duplicates
+const arr1 = [1,2,2,3,4,4,5]
+const uniqueArr1 = [...new Set(arr1)];
+console.log(uniqueArr1);
 
-//Sort Object by Property
+// 2. Flatten Nested Array 
+const arr2 = [1, 2, 2, 3, 4, 4, 5];
 
-const users = [ 
+const uniqueArr2 = [...new Set(arr2)];
+
+console.log(uniqueArr2);
+
+//3 Sort Object by Property
+const users1 = [ 
 { name: "John", age: 30 }, 
 { name: "Alice", age: 25 }, 
 { name: "Bob", age: 28 } 
@@ -88,4 +83,42 @@ const users = [
 // console.log(users);
 const sortAge = users.sort((a, b) => a.age - b.age);
 console.log(sortAge);
+
+
+//5 Transform Array of Objects 
+const users2 = [
+  { id: 1, name: "John" },
+  { id: 2, name: "Jane" }
+];
+
+let result = {};
+
+users.forEach(user => {
+  result[user.id] = user.name;
+});
+
+console.log(result);
+
+// 4. Group Elements by Property 
+const people = [ 
+  { name: "Tom", gender: "male" }, 
+  { name: "Sara", gender: "female" }, 
+  { name: "Alex", gender: "male" } 
+];
+
+let male = [];
+let female = [];
+
+people.forEach(p => {
+  if (p.gender === "male") {
+    male.push(p.name);
+  } else {
+    female.push(p.name);
+  }
+});
+
+let grouped = { male, female };
+
+console.log(grouped);
+
 
