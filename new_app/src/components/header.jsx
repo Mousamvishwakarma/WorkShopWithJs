@@ -3,7 +3,7 @@ import '../App.css'
 // Link and NavLink are used to create navigation links that don’t reload the page
 import { NavLink, Link } from 'react-router-dom'
 export const Header = () => {
-    return (   
+    return (
         <header className='header'>
 
             {/* Website logo or title that links back to the home page */}

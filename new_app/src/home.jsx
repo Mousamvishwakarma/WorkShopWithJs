@@ -1,26 +1,23 @@
 import React, { useState, useEffect } from 'react'
 // Importing the Product component that will display each product card
 import { Product } from './components/product';
+import { ProductDetail } from './productDetials';
 import './App.css';
 
 // Importing useNavigate hook from React Router
 // useNavigate allows you to move between pages (routes) programmatically
 import { useNavigate } from 'react-router-dom';
 
-const Home = () => {
-    const [products, setProducts] = useState([])
-    const [cart, setCart] = useState([])
+const Home = ({ products, cart, setCart, getProducts }) => {
 
+    // const [products, setProducts] = useState([]);
+    // const [cart, setCart] = useState([]);
     // Hook from React Router for navigation (used to open product detail page)
     // Here we create the instance of the useNavigate hook that will helps us to navigate to another component.
     const navigate = useNavigate()
 
     // Function to get product data from the API
-    const getProducts = async () => {
-        const res = await fetch("https://dummyjson.com/products")
-        const data = await res.json()
-        setProducts(data?.products)
-    }
+
     // useEffect runs automatically when the component first loads
     // Here, we call getProducts() once when the page is loaded
     useEffect(() => {
@@ -30,13 +27,14 @@ const Home = () => {
     // Another useEffect that runs whenever the cart changes
     // It logs the updated cart to the console
     useEffect(() => {
+        console.log(products)
         console.log("Cart updated:")
-        console.log(cart) 
+        console.log(cart)
     }, [cart]) // runs every time 'cart' state changes
 
     // Function to add a product to the cart
-    
     const addToCart = (product) => {
+        console.log(cart);
         // Updating the cart by keeping old items and adding the new one
         setCart((previous) => [...previous, product])
     }
@@ -68,6 +66,7 @@ const Home = () => {
                     ))
                 }
             </div>
+
         </div>
     )
 }
