@@ -45,7 +45,7 @@ class About extends React.Component {
                     setState() is used to update the state.
                     Updating the state triggers re-render and componentDidUpdate().
                 */}
-                <button 
+                <button
                     onClick={() => this.setState({ count: this.state.count + 1 })}
                 >
                     Increment
