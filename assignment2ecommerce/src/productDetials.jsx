@@ -57,4 +57,3 @@ const ProductDetail = () => {
 }
 
 export default ProductDetail
-// SAGA
