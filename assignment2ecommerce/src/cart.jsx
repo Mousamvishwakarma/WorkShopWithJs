@@ -1,50 +1,56 @@
-import Ratting from "./Ratting"
-import { useState , useMemo, useCallback, useContext } from "react"
-import { CartContext } from "./App"
-import { Product } from "./components/product"
-import { useNavigate } from "react-router-dom"
+import React, { useState, useEffect } from 'react';
+
 const Cart = () => {
-    const {state, dispatch} = useContext(CartContext)
-    const navigate = useNavigate()
+  const [cartItems, setCartItems] = useState([]);
 
-     const productDetail = (id) => {
-        //console.log("Opening product detail for ID:", id)
-        // Here its navigate to the product_detail page and we pass the product id as a search params 
-        // that will help us to render the specific product details
-        navigate(`/product_detail/${id}`)
+  useEffect(() => {
+    const itemsFromStorage = localStorage.getItem('shopping_cart');
+    if (itemsFromStorage) {
+      setCartItems(JSON.parse(itemsFromStorage));
     }
-    // const [ratting, setRatting] = useState(0);
-   /* const [counter, setCounter] = useState(0);
-    const [isTopRatting, setTopRatting] = useState(false);
+  }, []);
+
+  const handleRemoveItem = (itemIndex) => {
+    const updatedCart = cartItems.filter((_, index) => index !== itemIndex);
     
-    const count = useMemo(()=>{
-        console.log("counter")
-       let value = 0
-        for(let i =0; i<100000;i++){
-            value ++
-        }
-        return value
-    },[])
+    setCartItems(updatedCart);
+    
+    localStorage.setItem('shopping_cart', JSON.stringify(updatedCart));
+  };
 
-   const review = useCallback(()=>{
-        console.log('review')
-        return "review"
-   },[isTopRatting])
-     */
+  const totalPrice = cartItems.reduce((total, item) => total + item.price, 0);
 
-    /* const incRatting = () => {
-        setRatting(ratting+1)
-    } */
-    return (
-    <div>
-        <h3>Cart</h3>
-        {
-            state.cart.length && state.cart.map((el) => <Product key={el.id} product={el} productDetail={(id)=> productDetail(id)} remove={(e,item)=> {
-                e.stopPropagation()
-                dispatch({type:"REMOVE", item})}}/>)
-        }
-      </div>
-    )
-}
+  return (
+    <div className="cart-container">
+      <h2>Your Shopping Cart</h2>
+      
+      {cartItems.length === 0 ? (
+        <p className="empty-cart-message">Your cart is empty.</p>
+      ) : (
+        <div>
+          {cartItems.map((item, index) => (
+            <div key={`${item.id}-${index}`} className="cart-item">
+              <span className="item-title">{item.title}</span>
+              
+              <div className="cart-item-details">
+                <span className="item-price">${item.price.toFixed(2)}</span>
+                
+                <button 
+                  onClick={() => handleRemoveItem(index)} 
+                  className="remove-btn">
+                  Remove
+                </button>
+              </div>
+            </div>
+          ))}
 
-export default Cart
+          <div className="cart-total">
+            Total: ${totalPrice.toFixed(2)}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Cart;
