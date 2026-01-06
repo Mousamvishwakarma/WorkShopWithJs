@@ -6,6 +6,7 @@ let aarfilter= arr1.filter((i,index)=> i>40)
 console.log(aarfilter)
 
 
+
 let maparr= arr1.map((el,index)=> el*3)
 console.log(maparr)
 
